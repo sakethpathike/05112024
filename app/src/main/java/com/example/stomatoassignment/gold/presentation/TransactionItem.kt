@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,9 +17,7 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Sync
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,7 +27,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.stomatoassignment.gold.model.TransactionEntry
 import com.example.stomatoassignment.gold.model.TransactionEntryItem
 import com.example.stomatoassignment.gold.utils.TransactionStatus
 
@@ -40,7 +36,7 @@ fun TransactionItem(transactionHappenedOn: String, entries: List<TransactionEntr
         text = transactionHappenedOn,
         modifier = Modifier.padding(start = 15.dp),
         fontSize = 20.sp,
-        fontWeight = FontWeight.SemiBold
+        fontWeight = FontWeight.SemiBold, color = Color.White
     )
     entries.forEach {
         Card(
@@ -73,7 +69,11 @@ fun TransactionItem(transactionHappenedOn: String, entries: List<TransactionEntr
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Column {
-                        Text(text = it.transactionType, fontWeight = FontWeight.SemiBold)
+                        Text(
+                            text = it.transactionType,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color.White
+                        )
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
                                 imageVector = when (it.transactionStatus) {
@@ -92,7 +92,10 @@ fun TransactionItem(transactionHappenedOn: String, entries: List<TransactionEntr
                         modifier = Modifier.padding(end = 15.dp)
                     ) {
                         Text(
-                            text = it.amountPaid, fontSize = 20.sp, fontWeight = FontWeight.SemiBold
+                            text = it.amountPaid,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color.White
                         )
                         Text(text = it.weightInGrams.toString().plus(" gms"), fontSize = 14.sp)
                     }

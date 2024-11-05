@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -23,13 +25,13 @@ import androidx.compose.material.icons.filled.FilterAlt
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -93,49 +95,90 @@ fun GoldScreen() {
             .fillMaxSize()
     ) {
         item {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.primaryContainer)
-                    .padding(start = 15.dp, top = 25.dp, end = 15.dp)
-            ) {
-                Text(text = "24K Gold in Locker", color = MaterialTheme.colorScheme.primary)
-                Spacer(Modifier.height(20.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = "0.828gm", fontSize = 28.sp, fontWeight = FontWeight.SemiBold)
-                    Spacer(
-                        Modifier
-                            .padding(start = 15.dp, end = 15.dp)
-                            .width(1.5.dp)
-                            .height(20.dp)
-                            .background(MaterialTheme.colorScheme.onPrimaryContainer)
-                    )
-                    Text(
-                        text = "₹ 1200",
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = LocalContentColor.current.copy(0.75f)
-                    )
-                }
-                Spacer(Modifier.height(30.dp))
-                Button(
-                    onClick = {},
-                    shape = RoundedCornerShape(10.dp),
+            Box(modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(Color(color = 0xFF1B1539))
+                .drawBehind {
+                    val gridSpacing = 18f
+                    println(size.width)
+                    (0..size.width.toInt() step gridSpacing.toInt()).forEach {
+                        val bottomX = gridSpacing * (it / 4)
+                        val topX = bottomX + (gridSpacing * (4))
+                        drawLine(
+                            color = Color.White,
+                            start = Offset(
+                                x = bottomX * 2,
+                                y = size.height
+                            ),
+                            end = Offset(
+                                x = topX,
+                                y = 0f
+                            ),
+                            strokeWidth = 1f
+                        )
+                    }
+                    var horizontalY = 0f
+                    (0..size.height.toInt() step 10).forEachIndexed { index, int ->
+                        horizontalY += int.toFloat()
+                        if (horizontalY > size.height) return@forEachIndexed
+                        drawLine(
+                            color = Color.White,
+                            start = Offset(
+                                x = 0f,
+                                y = horizontalY
+                            ),
+                            end = Offset(
+                                x = size.width,
+                                y = horizontalY
+                            ),
+                            strokeWidth = 0.5f
+                        )
+                    }
+                }) {
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(20.dp),
-                    colors = ButtonColors(
-                        containerColor = Color(color = 0xFF5A21A3),
-                        contentColor = Color(color = 0xFFFAF9FC),
-                        disabledContainerColor = Color.Transparent,
-                        disabledContentColor = Color.Transparent,
-                    )
+                        .padding(start = 15.dp, top = 25.dp, end = 15.dp)
                 ) {
-                    Text(
-                        text = "Save Manually",
-                        fontSize = 16.sp,
-                        modifier = Modifier.padding(8.dp)
-                    )
+                    Text(text = "24K Gold in Locker", color = Color(color = 0xFFFFD700))
+                    Spacer(Modifier.height(20.dp))
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(text = "0.828gm", fontSize = 28.sp, fontWeight = FontWeight.SemiBold)
+                        Spacer(
+                            Modifier
+                                .padding(start = 15.dp, end = 15.dp)
+                                .width(1.5.dp)
+                                .height(20.dp)
+                                .background(Color.White)
+                        )
+                        Text(
+                            text = "₹ 1200",
+                            fontSize = 28.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color.White.copy(0.75f)
+                        )
+                    }
+                    Spacer(Modifier.height(30.dp))
+                    Button(
+                        onClick = {},
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 20.dp, start = 15.dp, end = 15.dp, top = 15.dp),
+                        colors = ButtonColors(
+                            containerColor = Color(color = 0xFF5A21A3),
+                            contentColor = Color(color = 0xFFFAF9FC),
+                            disabledContainerColor = Color.Transparent,
+                            disabledContentColor = Color.Transparent,
+                        )
+                    ) {
+                        Text(
+                            text = "Save Manually",
+                            fontSize = 16.sp,
+                            modifier = Modifier.padding(8.dp)
+                        )
+                    }
                 }
             }
         }
@@ -177,29 +220,31 @@ fun GoldScreen() {
 
 @Composable
 private fun CustomFilterButton(text: String, icon: ImageVector, positionOnLeft: Boolean) {
-    Button(
-        onClick = {},
-        colors = ButtonColors(
-            containerColor = Color(color = 0xff241F33),
-            contentColor = Color(0xffF2F1F3),
-            disabledContentColor = Color.Transparent,
-            disabledContainerColor = Color.Transparent
-        ),
-        shape = RoundedCornerShape(12.dp),
-        modifier = Modifier.border(
-            width = 2.dp,
-            color = Color(0xFF302945),
-            shape = RoundedCornerShape(12.dp)
-        )
+    Box(
+        modifier = Modifier
+            .border(
+                width = 1.dp,
+                color = Color(0xFF302945),
+                shape = RoundedCornerShape(10.dp)
+            )
+            .clip(RoundedCornerShape(10.dp))
+            .background(Color(color = 0xff241F33))
     ) {
-        if (positionOnLeft) {
-            Icon(imageVector = icon, contentDescription = null)
+        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(10.dp)) {
             Spacer(Modifier.width(5.dp))
-        }
-        Text(text = text)
-        if (positionOnLeft.not()) {
+            if (positionOnLeft) {
+                Icon(imageVector = icon, contentDescription = null, tint = Color(0xffF2F1F3))
+                Spacer(Modifier.width(5.dp))
+            }
+            Text(text = text, color = Color(0xffF2F1F3))
+            if (positionOnLeft.not()) {
+                Spacer(Modifier.width(5.dp))
+                Icon(
+                    imageVector = icon, contentDescription = null,
+                    tint = Color(0xffF2F1F3)
+                )
+            }
             Spacer(Modifier.width(5.dp))
-            Icon(imageVector = icon, contentDescription = null)
         }
     }
 }

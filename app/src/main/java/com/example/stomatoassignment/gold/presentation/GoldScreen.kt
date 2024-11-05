@@ -1,6 +1,7 @@
 package com.example.stomatoassignment.gold.presentation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,7 +18,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.FilterAlt
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -25,6 +29,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -81,7 +88,10 @@ fun GoldScreen() {
             ),
         )
     }
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
         item {
             Column(
                 modifier = Modifier
@@ -113,7 +123,13 @@ fun GoldScreen() {
                     shape = RoundedCornerShape(10.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(20.dp)
+                        .padding(20.dp),
+                    colors = ButtonColors(
+                        containerColor = Color(color = 0xFF5A21A3),
+                        contentColor = Color(color = 0xFFFAF9FC),
+                        disabledContainerColor = Color.Transparent,
+                        disabledContentColor = Color.Transparent,
+                    )
                 ) {
                     Text(
                         text = "Save Manually",
@@ -133,21 +149,21 @@ fun GoldScreen() {
                 horizontalArrangement = Arrangement.spacedBy(15.dp)
             ) {
                 Spacer(Modifier)
-                Button(onClick = {}, shape = RoundedCornerShape(12.dp)) {
-                    Text(text = "Status")
-                    Spacer(Modifier.width(5.dp))
-                    Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = null)
-                }
-                Button(onClick = {}, shape = RoundedCornerShape(12.dp)) {
-                    Text(text = "Status")
-                    Spacer(Modifier.width(5.dp))
-                    Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = null)
-                }
-                Button(onClick = {}, shape = RoundedCornerShape(12.dp)) {
-                    Text(text = "Status")
-                    Spacer(Modifier.width(5.dp))
-                    Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = null)
-                }
+                CustomFilterButton(
+                    text = "Status",
+                    icon = Icons.Default.ArrowDropDown,
+                    positionOnLeft = false
+                )
+                CustomFilterButton(
+                    text = "Statement",
+                    icon = Icons.Default.Download,
+                    positionOnLeft = true
+                )
+                CustomFilterButton(
+                    text = "Filters",
+                    icon = Icons.Default.FilterAlt,
+                    positionOnLeft = true
+                )
             }
         }
         items(transactionsData) {
@@ -155,6 +171,35 @@ fun GoldScreen() {
                 transactionHappenedOn = it.transactionHappenedOn,
                 entries = it.transactionEntryItems
             )
+        }
+    }
+}
+
+@Composable
+private fun CustomFilterButton(text: String, icon: ImageVector, positionOnLeft: Boolean) {
+    Button(
+        onClick = {},
+        colors = ButtonColors(
+            containerColor = Color(color = 0xff241F33),
+            contentColor = Color(0xffF2F1F3),
+            disabledContentColor = Color.Transparent,
+            disabledContainerColor = Color.Transparent
+        ),
+        shape = RoundedCornerShape(12.dp),
+        modifier = Modifier.border(
+            width = 2.dp,
+            color = Color(0xFF302945),
+            shape = RoundedCornerShape(12.dp)
+        )
+    ) {
+        if (positionOnLeft) {
+            Icon(imageVector = icon, contentDescription = null)
+            Spacer(Modifier.width(5.dp))
+        }
+        Text(text = text)
+        if (positionOnLeft.not()) {
+            Spacer(Modifier.width(5.dp))
+            Icon(imageVector = icon, contentDescription = null)
         }
     }
 }

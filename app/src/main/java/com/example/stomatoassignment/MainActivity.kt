@@ -5,27 +5,37 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.stomatoassignment.common.components.TopAppBar
@@ -48,16 +58,34 @@ class MainActivity : ComponentActivity() {
             })
             val coroutineScope = rememberCoroutineScope()
             StomatoAssignmentTheme {
-                Surface {
+                Surface(color = Color(color = 0xff1D1829)) {
                     Scaffold(modifier = Modifier
-                        .windowInsetsPadding(WindowInsets.systemBars)
+                        .background(Color(color = 0xFF36156E))
+                        .windowInsetsPadding(WindowInsets.statusBars)
                         .fillMaxSize(), topBar = {
                         TopAppBar()
                     }) { innerPadding ->
-                        Column {
+                        Column(modifier = Modifier.padding(innerPadding)) {
                             ScrollableTabRow(
-                                modifier = Modifier.padding(innerPadding),
-                                selectedTabIndex = pagerState.currentPage
+                                containerColor = Color(color = 0xFF36156E),
+                                selectedTabIndex = pagerState.currentPage,
+                                contentColor = Color(color = 0xFFF9F8FA),
+                                indicator = { tabPositions ->
+                                    if (pagerState.currentPage < tabPositions.size) {
+                                        SecondaryIndicator(
+                                            modifier = Modifier
+                                                .tabIndicatorOffset(tabPositions[pagerState.currentPage])
+                                                .height(5.dp)
+                                                .clip(
+                                                    RoundedCornerShape(
+                                                        topStart = 15.dp,
+                                                        topEnd = 15.dp
+                                                    )
+                                                ),
+                                            color = Color(color = 0xFFA97FE0).copy(0.75f)
+                                        )
+                                    }
+                                }
                             ) {
                                 tabRowElements.forEachIndexed { index, string ->
                                     Tab(

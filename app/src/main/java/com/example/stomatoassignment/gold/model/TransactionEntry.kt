@@ -11,7 +11,7 @@ data class TransactionEntry(
 
 @Serializable
 data class TransactionEntryItem(
-    val transactionType:String,
+    val transactionType: String,
     val transactionStatus: TransactionStatus,
     val time: String,
     val date: String,

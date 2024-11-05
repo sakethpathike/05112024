@@ -17,6 +17,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Sync
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -25,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,7 +46,13 @@ fun TransactionItem(transactionHappenedOn: String, entries: List<TransactionEntr
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 15.dp, end = 15.dp, top = 25.dp)
+                .padding(start = 15.dp, end = 15.dp, top = 25.dp),
+            colors = CardColors(
+                containerColor = Color(color = 0xFF241F33),
+                contentColor = Color(color = 0xFFC6C5CA),
+                disabledContainerColor = Color.Transparent,
+                disabledContentColor = Color.Transparent
+            )
         ) {
             Row(
                 modifier = Modifier
@@ -57,7 +65,7 @@ fun TransactionItem(transactionHappenedOn: String, entries: List<TransactionEntr
                         .padding(15.dp)
                         .size(50.dp)
                         .clip(CircleShape)
-                        .background(CardDefaults.cardColors().contentColor)
+                        .background(Color.White)
                 )
                 Row(
                     verticalAlignment = Alignment.CenterVertically,

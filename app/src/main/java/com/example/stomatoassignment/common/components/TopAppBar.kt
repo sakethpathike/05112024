@@ -2,6 +2,7 @@ package com.example.stomatoassignment.common.components
 
 import android.widget.Space
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.AbsoluteRoundedCornerShape
 import androidx.compose.foundation.shape.CircleShape
@@ -28,27 +30,41 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun TopAppBar() {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(color = 0xFF36156E)),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Box(
             modifier = Modifier
-                .padding(15.dp)
+                .padding(start = 15.dp)
+                .size(45.dp)
                 .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.primary)
+                .background(
+                    brush = Brush.linearGradient(
+                        listOf(
+                            Color.White.copy(0.35f),
+                            Color(color = 0xFF3E3056),
+                            Color(color = 0xFF3E3056),
+                        )
+                    )
+                )
+                .border(width = 1.dp, color = Color.White.copy(0.25f), shape = CircleShape)
                 .padding(10.dp),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = "VR",
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = Color.White,
                 fontWeight = FontWeight.SemiBold
             )
         }
@@ -59,12 +75,20 @@ fun TopAppBar() {
             IconButton(
                 onClick = {}, modifier = Modifier
                     .clip(RoundedCornerShape(22.dp))
-                    .background(MaterialTheme.colorScheme.primary)
+                    .background(
+                        brush = Brush.linearGradient(
+                            listOf(
+                                Color.White.copy(0.35f),
+                                Color(color = 0xFF3E3056),
+                                Color(color = 0xFF3E3056),
+                            )
+                        )
+                    )
             ) {
                 Icon(
                     imageVector = Icons.Default.Headset,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onPrimary
+                    tint = Color.White,
                 )
             }
             Spacer(Modifier.width(15.dp))
@@ -72,7 +96,15 @@ fun TopAppBar() {
                 verticalAlignment = Alignment.CenterVertically, modifier = Modifier
                     .padding(15.dp)
                     .clip(RoundedCornerShape(22.dp))
-                    .background(MaterialTheme.colorScheme.primary)
+                    .background(
+                        brush = Brush.verticalGradient(
+                            listOf(
+                                Color.White.copy(0.25f),
+                                Color(color = 0xFF3E3056),
+                                Color(color = 0xFF3E3056),
+                            )
+                        )
+                    )
             ) {
                 IconButton(
                     onClick = {}
@@ -85,7 +117,7 @@ fun TopAppBar() {
                         Icon(
                             imageVector = Icons.Outlined.Notifications,
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onPrimary
+                            tint = Color.White,
                         )
                     }
                 }
@@ -94,7 +126,7 @@ fun TopAppBar() {
                         .padding(start = 5.dp, end = 5.dp)
                         .width(1.5.dp)
                         .height(10.dp)
-                        .background(MaterialTheme.colorScheme.onPrimary)
+                        .background(Color.White)
                 )
                 IconButton(
                     onClick = {}
@@ -102,7 +134,7 @@ fun TopAppBar() {
                     Icon(
                         imageVector = Icons.Default.CardGiftcard,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onPrimary
+                        tint = Color.White,
                     )
                 }
             }

@@ -1,4 +1,4 @@
-package com.example.stomatoassignment.gold.presentation
+package com.example.stomatoassignment.gold.presentation.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

@@ -1,4 +1,4 @@
-package com.example.stomatoassignment.common.components
+package com.example.stomatoassignment.common.presentation.components
 
 import android.widget.Space
 import androidx.compose.foundation.background

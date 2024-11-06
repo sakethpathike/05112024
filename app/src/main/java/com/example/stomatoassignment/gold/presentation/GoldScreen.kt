@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -100,30 +101,41 @@ fun GoldScreen() {
                 .wrapContentHeight()
                 .background(Color(color = 0xFF1B1539))
                 .drawBehind {
-                    val gridSpacing = 18f
-                    println(size.width)
+                    val gridSpacing = 24f
                     (0..size.width.toInt() step gridSpacing.toInt()).forEach {
                         val bottomX = gridSpacing * (it / 4)
                         val topX = bottomX + (gridSpacing * (4))
+
+                        val lineMidPointX = (bottomX + topX) / 2
+
                         drawLine(
-                            color = Color.White,
+                            brush = Brush.linearGradient(
+                                listOf(
+                                    Color.White.copy(0.75f),
+                                    Color(0xFF352359)
+                                )
+                            ),
                             start = Offset(
-                                x = bottomX * 2,
+                                x = if (size.width / 2 > lineMidPointX) bottomX * 1.4.toFloat() else bottomX * 1.5.toFloat(),
                                 y = size.height
                             ),
-                            end = Offset(
-                                x = topX,
-                                y = 0f
-                            ),
-                            strokeWidth = 1f
+                            end = Offset(x = topX, y = 0f),
+                            strokeWidth = 0.75f
                         )
                     }
+
+                    // horizontal part of the grid
                     var horizontalY = 0f
                     (0..size.height.toInt() step 10).forEachIndexed { index, int ->
                         horizontalY += int.toFloat()
                         if (horizontalY > size.height) return@forEachIndexed
                         drawLine(
-                            color = Color.White,
+                            brush = Brush.linearGradient(
+                                listOf(
+                                    Color.White.copy(0.75f),
+                                    Color(0xFF352359)
+                                )
+                            ),
                             start = Offset(
                                 x = 0f,
                                 y = horizontalY
@@ -132,7 +144,7 @@ fun GoldScreen() {
                                 x = size.width,
                                 y = horizontalY
                             ),
-                            strokeWidth = 0.5f
+                            strokeWidth = 0.25f
                         )
                     }
                 }) {

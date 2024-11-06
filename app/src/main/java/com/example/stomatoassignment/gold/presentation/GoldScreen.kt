@@ -6,7 +6,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,7 +23,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.Assistant
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.FilterAlt
 import androidx.compose.material3.Button
@@ -36,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
@@ -105,7 +104,7 @@ fun GoldScreen() {
             .background(Color(color = 0xff1D1829))
     ) {
         item {
-            BoxWithConstraints(
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
@@ -198,12 +197,6 @@ fun GoldScreen() {
                                 shape = RoundedCornerShape(10.dp)
                             )
                     )
-                    Icon(
-                        imageVector = Icons.Default.Assistant,
-                        contentDescription = null,
-                        tint = Color.White,
-                        modifier = Modifier.align(Alignment.TopEnd)
-                    )
                 }
                 Box(
                     Modifier
@@ -215,11 +208,32 @@ fun GoldScreen() {
                         .background(Color(0xFF003366))
                         .align(Alignment.BottomEnd)
                 )
+                Box(
+                    Modifier
+                        .padding(bottom = 130.dp, end = 108.dp)
+                        .size(width = 35.dp, height = 15.dp)
+                        .clip(
+                            RoundedCornerShape(25.dp)
+                        )
+                        .background(Color(0xFFCCE5FD))
+                        .align(Alignment.BottomEnd)
+                )
+
+                Box(
+                    Modifier
+                        .padding(bottom = 160.dp, end = 108.dp)
+                        .size(width = 35.dp, height = 15.dp)
+                        .clip(
+                            RoundedCornerShape(25.dp)
+                        )
+                        .background(Color(0xFFCCE5FD))
+                        .align(Alignment.BottomEnd)
+                )
 
                 Box(
                     Modifier
                         .padding(bottom = 115.dp, end = 125.dp)
-                        .size(width = 50.dp, height = boxHeight)
+                        .size(width = 45.dp, height = boxHeight)
                         .clip(
                             RoundedCornerShape(10.dp)
                         )
@@ -239,9 +253,9 @@ fun GoldScreen() {
                     ) {
                         Box(
                             modifier = Modifier
-                                .height(40.dp)
-                                .width(20.dp)
-                                .clip(RoundedCornerShape(35.dp))
+                                .height(20.dp)
+                                .width(10.dp)
+                                .clip(RoundedCornerShape(17.5.dp))
                                 .background(
                                     Color(color = 0xFFCCE6FF)
                                 )
@@ -251,9 +265,9 @@ fun GoldScreen() {
                         Box(
                             modifier = Modifier
                                 .padding(end = 5.dp)
-                                .height(30.dp)
-                                .width(15.dp)
-                                .clip(RoundedCornerShape(35.dp))
+                                .height(15.dp)
+                                .width(7.5.dp)
+                                .clip(RoundedCornerShape(17.5.dp))
                                 .background(
                                     Color(color = 0xFF004C99)
                                 )
@@ -263,13 +277,63 @@ fun GoldScreen() {
                         Box(
                             modifier = Modifier
                                 .padding(end = 15.dp)
-                                .height(30.dp)
-                                .width(15.dp)
-                                .clip(RoundedCornerShape(35.dp))
+                                .height(15.dp)
+                                .width(7.5.dp)
+                                .clip(RoundedCornerShape(17.5.dp))
                                 .background(
                                     Color(color = 0xFFCCE6FF)
                                 )
                                 .align(Alignment.Center)
+                        )
+
+                        //  strokes:
+                        Box(
+                            modifier = Modifier
+                                .rotate(25f)
+                                .padding(start = 5.dp, bottom = 5.dp)
+                                .height(12.dp)
+                                .width(3.dp)
+                                .clip(RoundedCornerShape(18.dp))
+                                .background(
+                                    Color(color = 0xFF66B2FF)
+                                )
+                                .align(Alignment.BottomStart)
+                        )
+                        Box(
+                            modifier = Modifier
+                                .rotate(32f)
+                                .padding(end = 5.dp, top = 5.dp)
+                                .height(14.dp)
+                                .width(3.dp)
+                                .clip(RoundedCornerShape(18.dp))
+                                .background(
+                                    Color(color = 0xFF66B2FF)
+                                )
+                                .align(Alignment.TopEnd)
+                        )
+                        Box(
+                            modifier = Modifier
+                                .rotate(-30f)
+                                .padding(end = 5.dp, bottom = 5.dp)
+                                .height(14.dp)
+                                .width(3.dp)
+                                .clip(RoundedCornerShape(18.dp))
+                                .background(
+                                    Color(color = 0xFF66B2FF)
+                                )
+                                .align(Alignment.BottomEnd)
+                        )
+                        Box(
+                            modifier = Modifier
+                                .rotate(-25f)
+                                .padding(start = 5.dp, top = 5.dp)
+                                .height(12.dp)
+                                .width(3.dp)
+                                .clip(RoundedCornerShape(18.dp))
+                                .background(
+                                    Color(color = 0xFF66B2FF)
+                                )
+                                .align(Alignment.TopStart)
                         )
                     }
                 }

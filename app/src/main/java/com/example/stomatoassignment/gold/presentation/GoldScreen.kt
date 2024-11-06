@@ -1,17 +1,21 @@
 package com.example.stomatoassignment.gold.presentation
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,6 +24,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Assistant
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.FilterAlt
 import androidx.compose.material3.Button
@@ -45,6 +50,7 @@ import com.example.stomatoassignment.gold.model.TransactionEntryItem
 import com.example.stomatoassignment.gold.presentation.component.TransactionItem
 import com.example.stomatoassignment.gold.utils.TransactionStatus
 
+@SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 fun GoldScreen() {
     val transactionsData = customRememberSavable {
@@ -99,83 +105,175 @@ fun GoldScreen() {
             .background(Color(color = 0xff1D1829))
     ) {
         item {
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .background(Color(color = 0xFF1B1539))
-                .drawBehind {
-                    val gridSpacing = 24f
-                    (0..size.width.toInt() step gridSpacing.toInt()).forEach {
-                        val bottomX = gridSpacing * (it / 4)
-                        val topX = bottomX + (gridSpacing * (4))
+            BoxWithConstraints(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .background(Color(color = 0xFF1B1539))
+                    .drawBehind {
+                        val gridSpacing = 24f
+                        (0..size.width.toInt() step gridSpacing.toInt()).forEach {
+                            val bottomX = gridSpacing * (it / 4)
+                            val topX = bottomX + (gridSpacing * (4))
 
-                        val lineMidPointX = (bottomX + topX) / 2
+                            val lineMidPointX = (bottomX + topX) / 2
 
-                        drawLine(
-                            brush = Brush.linearGradient(
+                            drawLine(
+                                brush = Brush.linearGradient(
+                                    listOf(
+                                        Color.White.copy(0.75f), Color(0xFF352359)
+                                    )
+                                ), start = Offset(
+                                    x = if (size.width / 2 > lineMidPointX) bottomX * 1.4.toFloat() else bottomX * 1.5.toFloat(),
+                                    y = size.height
+                                ), end = Offset(x = topX, y = 0f), strokeWidth = 0.75f
+                            )
+                        }
+
+                        // horizontal part of the grid
+                        var horizontalY = 0f
+                        (0..size.height.toInt() step 10).forEachIndexed { index, int ->
+                            horizontalY += int.toFloat()
+                            if (horizontalY > size.height) return@forEachIndexed
+                            drawLine(
+                                brush = Brush.linearGradient(
+                                    listOf(
+                                        Color.White.copy(0.75f), Color(0xFF352359)
+                                    )
+                                ), start = Offset(
+                                    x = 0f, y = horizontalY
+                                ), end = Offset(
+                                    x = size.width, y = horizontalY
+                                ), strokeWidth = 0.25f
+                            )
+                        }
+
+                        drawOval(
+                            brush = Brush.horizontalGradient(
                                 listOf(
-                                    Color.White.copy(0.75f),
-                                    Color(0xFF352359)
+                                    Color.White,
+                                    Color.White,
+                                    Color(0xFF481E7E),
+                                    Color(0xFF3A1967),
                                 )
                             ),
-                            start = Offset(
-                                x = if (size.width / 2 > lineMidPointX) bottomX * 1.4.toFloat() else bottomX * 1.5.toFloat(),
-                                y = size.height
-                            ),
-                            end = Offset(x = topX, y = 0f),
-                            strokeWidth = 0.75f
+                            size = Size(210f, 28f),
+                            topLeft = Offset(x = size.width - 300f, y = size.height - 215)
                         )
-                    }
-
-                    // horizontal part of the grid
-                    var horizontalY = 0f
-                    (0..size.height.toInt() step 10).forEachIndexed { index, int ->
-                        horizontalY += int.toFloat()
-                        if (horizontalY > size.height) return@forEachIndexed
-                        drawLine(
+                        drawRoundRect(
                             brush = Brush.linearGradient(
                                 listOf(
-                                    Color.White.copy(0.75f),
-                                    Color(0xFF352359)
+                                    Color.White,
+                                    Color.White,
+                                    Color(0xFF481E7E),
+                                    Color(0xFF3A1967),
                                 )
                             ),
-                            start = Offset(
-                                x = 0f,
-                                y = horizontalY
-                            ),
-                            end = Offset(
-                                x = size.width,
-                                y = horizontalY
-                            ),
-                            strokeWidth = 0.25f
+                            size = Size(210f, 100f),
+                            topLeft = Offset(x = size.width - 300f, y = size.height - 200)
+                        )
+                    }) {
+                val boxHeight = 75.dp
+                Box(
+                    Modifier
+                        .padding(bottom = 115.dp, end = 55.dp)
+                        .size(width = 85.dp, height = boxHeight)
+                        .clip(
+                            RoundedCornerShape(10.dp)
+                        )
+                        .background(Color(0xFF248AE0))
+                        .align(Alignment.BottomEnd)
+                ) {
+                    Box(
+                        Modifier
+                            .fillMaxHeight()
+                            .width(width = 60.dp)
+                            .clip(
+                                RoundedCornerShape(10.dp)
+                            )
+                            .background(Color(0xFF1C445F))
+                            .border(
+                                width = 3.5.dp,
+                                color = Color(0xFF79B4E2),
+                                shape = RoundedCornerShape(10.dp)
+                            )
+                    )
+                    Icon(
+                        imageVector = Icons.Default.Assistant,
+                        contentDescription = null,
+                        tint = Color.White,
+                        modifier = Modifier.align(Alignment.TopEnd)
+                    )
+                }
+                Box(
+                    Modifier
+                        .padding(bottom = 115.dp, end = 115.dp)
+                        .size(width = 25.dp, height = boxHeight)
+                        .clip(
+                            RoundedCornerShape(10.dp)
+                        )
+                        .background(Color(0xFF003366))
+                        .align(Alignment.BottomEnd)
+                )
+
+                Box(
+                    Modifier
+                        .padding(bottom = 115.dp, end = 125.dp)
+                        .size(width = 50.dp, height = boxHeight)
+                        .clip(
+                            RoundedCornerShape(10.dp)
+                        )
+                        .background(Color(0xFF004C99))
+                        .align(Alignment.BottomEnd)
+                ) {
+                    Box(
+                        Modifier
+                            .fillMaxSize()
+                            .padding(start = 6.dp, end = 6.dp, top = 11.dp, bottom = 12.dp)
+                            .clip(
+                                RoundedCornerShape(5.dp)
+                            )
+                            .background(
+                                Color(color = 0xFF0080FF)
+                            )
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .height(40.dp)
+                                .width(20.dp)
+                                .clip(RoundedCornerShape(35.dp))
+                                .background(
+                                    Color(color = 0xFFCCE6FF)
+                                )
+                                .align(Alignment.Center)
+                        )
+
+                        Box(
+                            modifier = Modifier
+                                .padding(end = 5.dp)
+                                .height(30.dp)
+                                .width(15.dp)
+                                .clip(RoundedCornerShape(35.dp))
+                                .background(
+                                    Color(color = 0xFF004C99)
+                                )
+                                .align(Alignment.Center)
+                        )
+
+                        Box(
+                            modifier = Modifier
+                                .padding(end = 15.dp)
+                                .height(30.dp)
+                                .width(15.dp)
+                                .clip(RoundedCornerShape(35.dp))
+                                .background(
+                                    Color(color = 0xFFCCE6FF)
+                                )
+                                .align(Alignment.Center)
                         )
                     }
+                }
 
-                    drawOval(
-                        brush = Brush.horizontalGradient(
-                            listOf(
-                                Color.White,
-                                Color.White,
-                                Color(0xFF481E7E),
-                                Color(0xFF3A1967),
-                            )
-                        ),
-                        size = Size(180f, 28f),
-                        topLeft = Offset(x = size.width - 280f, y = size.height - 215)
-                    )
-                    drawRoundRect(
-                        brush = Brush.linearGradient(
-                            listOf(
-                                Color.White,
-                                Color.White,
-                                Color(0xFF481E7E),
-                                Color(0xFF3A1967),
-                            )
-                        ),
-                        size = Size(180f, 100f),
-                        topLeft = Offset(x = size.width - 280f, y = size.height - 200)
-                    )
-                }) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -196,13 +294,12 @@ fun GoldScreen() {
                                 .width(1.5.dp)
                                 .height(20.dp)
                                 .background(Color.White)
-                        )
-                        Text(
-                            text = "₹ 1200",
-                            fontSize = 28.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            color = Color.White.copy(0.75f)
-                        )
+                        )/*  Text(
+                              text = "₹ 1200",
+                              fontSize = 28.sp,
+                              fontWeight = FontWeight.SemiBold,
+                              color = Color.White.copy(0.75f)
+                          )*/
                     }
                     Spacer(Modifier.height(30.dp))
                     Button(
@@ -239,18 +336,15 @@ fun GoldScreen() {
                 Spacer(Modifier)
                 CustomFilterButton(
                     text = "Status",
-                    icon = Icons.Default.ArrowDropDown,
-                    positionOnLeft = false
+                    icon = Icons.Default.ArrowDropDown, iconPositionOnLeft = false
                 )
                 CustomFilterButton(
                     text = "Statement",
-                    icon = Icons.Default.Download,
-                    positionOnLeft = true
+                    icon = Icons.Default.Download, iconPositionOnLeft = true
                 )
                 CustomFilterButton(
                     text = "Filters",
-                    icon = Icons.Default.FilterAlt,
-                    positionOnLeft = true
+                    icon = Icons.Default.FilterAlt, iconPositionOnLeft = true
                 )
             }
         }
@@ -264,25 +358,23 @@ fun GoldScreen() {
 }
 
 @Composable
-private fun CustomFilterButton(text: String, icon: ImageVector, positionOnLeft: Boolean) {
+private fun CustomFilterButton(text: String, icon: ImageVector, iconPositionOnLeft: Boolean) {
     Box(
         modifier = Modifier
             .border(
-                width = 1.dp,
-                color = Color(0xFF302945),
-                shape = RoundedCornerShape(10.dp)
+                width = 1.dp, color = Color(0xFF302945), shape = RoundedCornerShape(10.dp)
             )
             .clip(RoundedCornerShape(10.dp))
             .background(Color(color = 0xff241F33))
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(10.dp)) {
             Spacer(Modifier.width(5.dp))
-            if (positionOnLeft) {
+            if (iconPositionOnLeft) {
                 Icon(imageVector = icon, contentDescription = null, tint = Color(0xffF2F1F3))
                 Spacer(Modifier.width(5.dp))
             }
             Text(text = text, color = Color(0xffF2F1F3))
-            if (positionOnLeft.not()) {
+            if (iconPositionOnLeft.not()) {
                 Spacer(Modifier.width(5.dp))
                 Icon(
                     imageVector = icon, contentDescription = null,

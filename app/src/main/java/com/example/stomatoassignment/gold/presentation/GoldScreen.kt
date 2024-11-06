@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -41,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import com.example.stomatoassignment.common.utils.customRememberSavable
 import com.example.stomatoassignment.gold.model.TransactionEntry
 import com.example.stomatoassignment.gold.model.TransactionEntryItem
+import com.example.stomatoassignment.gold.presentation.component.TransactionItem
 import com.example.stomatoassignment.gold.utils.TransactionStatus
 
 @Composable
@@ -94,6 +96,7 @@ fun GoldScreen() {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color(color = 0xff1D1829))
     ) {
         item {
             Box(modifier = Modifier
@@ -147,6 +150,31 @@ fun GoldScreen() {
                             strokeWidth = 0.25f
                         )
                     }
+
+                    drawOval(
+                        brush = Brush.horizontalGradient(
+                            listOf(
+                                Color.White,
+                                Color.White,
+                                Color(0xFF481E7E),
+                                Color(0xFF3A1967),
+                            )
+                        ),
+                        size = Size(180f, 28f),
+                        topLeft = Offset(x = size.width - 280f, y = size.height - 215)
+                    )
+                    drawRoundRect(
+                        brush = Brush.linearGradient(
+                            listOf(
+                                Color.White,
+                                Color.White,
+                                Color(0xFF481E7E),
+                                Color(0xFF3A1967),
+                            )
+                        ),
+                        size = Size(180f, 100f),
+                        topLeft = Offset(x = size.width - 280f, y = size.height - 200)
+                    )
                 }) {
                 Column(
                     modifier = Modifier
@@ -156,7 +184,12 @@ fun GoldScreen() {
                     Text(text = "24K Gold in Locker", color = Color(color = 0xFFFFD700))
                     Spacer(Modifier.height(20.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(text = "0.828gm", fontSize = 28.sp, fontWeight = FontWeight.SemiBold)
+                        Text(
+                            text = "0.828gm",
+                            fontSize = 28.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color.White
+                        )
                         Spacer(
                             Modifier
                                 .padding(start = 15.dp, end = 15.dp)

@@ -1,6 +1,7 @@
 package com.example.stomatoassignment.gold.presentation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
@@ -39,6 +40,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -173,6 +176,7 @@ fun GoldScreen() {
                         )
                     }) {
                 val boxHeight = 75.dp
+
                 Box(
                     Modifier
                         .padding(bottom = 115.dp, end = 42.dp)
@@ -373,6 +377,44 @@ fun GoldScreen() {
                                 )
                                 .align(Alignment.TopStart)
                         )
+                    }
+                }
+
+                Canvas(
+                    modifier = Modifier
+                        .padding(bottom = 162.dp, end = 62.dp)
+                        .size(24.dp)
+                        .align(Alignment.BottomEnd)
+                ) {
+                    val path = Path().apply {
+                        moveTo(3.28112f, 0.0279388f)
+                        cubicTo(3.41075f, 1.4234f, 4.52052f, 2.52888f, 5.91603f, 2.65804f)
+                        cubicTo(4.52052f, 2.78719f, 3.41075f, 3.89268f, 3.28112f, 5.28814f)
+                        cubicTo(3.1515f, 3.89268f, 2.04173f, 2.78719f, 0.646221f, 2.65804f)
+                        cubicTo(2.04173f, 2.52888f, 3.1515f, 1.4234f, 3.28112f, 0.0279388f)
+                        close()
+                    }
+                    scale(size.width / 6f, size.width / 6f, Offset.Zero) {
+                        drawPath(path, color = Color(0xFFFEEC9F)) // #FEEC9F
+                    }
+                }
+
+                Canvas(
+                    modifier = Modifier
+                        .padding(bottom = 198.dp, end = 90.dp)
+                        .size(14.dp)
+                        .align(Alignment.BottomEnd)
+                ) {
+                    val path = Path().apply {
+                        moveTo(3.28112f, 0.0279388f)
+                        cubicTo(3.41075f, 1.4234f, 4.52052f, 2.52888f, 5.91603f, 2.65804f)
+                        cubicTo(4.52052f, 2.78719f, 3.41075f, 3.89268f, 3.28112f, 5.28814f)
+                        cubicTo(3.1515f, 3.89268f, 2.04173f, 2.78719f, 0.646221f, 2.65804f)
+                        cubicTo(2.04173f, 2.52888f, 3.1515f, 1.4234f, 3.28112f, 0.0279388f)
+                        close()
+                    }
+                    scale(size.width / 6f, size.width / 6f, Offset.Zero) {
+                        drawPath(path, color = Color(0xFFFEEC9F)) // #FEEC9F
                     }
                 }
 

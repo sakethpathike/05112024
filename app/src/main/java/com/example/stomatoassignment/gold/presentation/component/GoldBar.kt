@@ -1,13 +1,17 @@
 package com.example.stomatoassignment.gold.presentation.component
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Canvas
 import androidx.compose.ui.graphics.Color
@@ -25,7 +29,7 @@ fun BoxScope.GoldBar(
 ) {
     Canvas(
         Modifier
-            .padding(bottom = 118.dp, end = 64.dp)
+            .padding(bottom = 118.5.dp, end = 64.dp)
             .then(modifier)
             .height(10.dp)
             .align(Alignment.BottomEnd)
@@ -40,26 +44,20 @@ fun BoxScope.GoldBar(
             canvas.drawOutline(Outline.Generic(Triangle.regularTrianglePath(size)), paint = paint)
         }
     }
-    Canvas(
+    Box(
         Modifier
-            .padding(bottom = 118.dp, end = 64.dp)
+            .padding(bottom = 118.5.dp, end = 64.5.dp)
             .then(modifier)
-            .width(25.dp)
+            .width(15.dp)
             .height(3.dp)
             .align(Alignment.BottomEnd)
             .rotate(-180f)
-    ) {
-        val paint = Paint().apply {
-            this.color = Color(color = 0xFFD38729)
-            this.pathEffect = PathEffect.cornerPathEffect(5f)
-        }
-        drawIntoCanvas { canvas: Canvas ->
-            canvas.drawOutline(Outline.Generic(Triangle.regularTrianglePath(size)), paint = paint)
-        }
-    }
+            .clip(RoundedCornerShape(bottomStart = 25f))
+            .background(Color(color = 0xFFD38729))
+    )
     Canvas(
         Modifier
-            .padding(bottom = 118.dp, end = 72.dp)
+            .padding(bottom = 118.5.dp, end = 72.dp)
             .then(modifier)
             .height(10.dp)
             .align(Alignment.BottomEnd)

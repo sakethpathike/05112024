@@ -72,44 +72,44 @@ class MainActivity : ComponentActivity() {
                 TopAppBar()
                 ScrollableTabRow(
                     containerColor = Color.Transparent,
-                        selectedTabIndex = pagerState.currentPage,
-                        contentColor = Color(color = 0xFFF9F8FA),
-                        indicator = { tabPositions ->
-                            if (pagerState.currentPage < tabPositions.size) {
-                                SecondaryIndicator(
-                                    modifier = Modifier
-                                        .tabIndicatorOffset(tabPositions[pagerState.currentPage])
-                                        .height(4.75.dp)
-                                        .clip(
-                                            RoundedCornerShape(
-                                                topStart = 15.dp, topEnd = 15.dp
-                                            )
-                                        ),
-                                    color = Color(color = 0xFFA97FE0).copy(0.75f)
-                                )
-                            }
-                        }
-                    ) {
-                        tabRowElements.forEachIndexed { index, string ->
-                            Tab(
-                                selected = index == pagerState.currentPage - 1,
-                                onClick = {
-                                    coroutineScope.launch {
-                                        pagerState.animateScrollToPage(index)
-                                    }
-                                },
-                                modifier = Modifier.padding(15.dp)
-                            ) {
-                                Text(
-                                    text = string,
-                                    color = if (index == pagerState.currentPage) LocalContentColor.current else LocalContentColor.current.copy(
-                                        0.75f
+                    selectedTabIndex = pagerState.currentPage,
+                    contentColor = Color(color = 0xFFF9F8FA),
+                    indicator = { tabPositions ->
+                        if (pagerState.currentPage < tabPositions.size) {
+                            SecondaryIndicator(
+                                modifier = Modifier
+                                    .tabIndicatorOffset(tabPositions[pagerState.currentPage])
+                                    .height(4.75.dp)
+                                    .clip(
+                                        RoundedCornerShape(
+                                            topStart = 15.dp, topEnd = 15.dp
+                                        )
                                     ),
-                                    fontWeight = if (index == pagerState.currentPage) FontWeight.SemiBold else FontWeight.Normal
-                                )
-                            }
+                                color = Color(color = 0xFFA97FE0).copy(0.75f)
+                            )
                         }
                     }
+                ) {
+                    tabRowElements.forEachIndexed { index, string ->
+                        Tab(
+                            selected = index == pagerState.currentPage - 1,
+                            onClick = {
+                                coroutineScope.launch {
+                                    pagerState.animateScrollToPage(index)
+                                }
+                            },
+                            modifier = Modifier.padding(15.dp)
+                        ) {
+                            Text(
+                                text = string,
+                                color = if (index == pagerState.currentPage) LocalContentColor.current else LocalContentColor.current.copy(
+                                    0.75f
+                                ),
+                                fontWeight = if (index == pagerState.currentPage) FontWeight.SemiBold else FontWeight.Normal
+                            )
+                        }
+                    }
+                }
                 HorizontalPager(
                     modifier = Modifier.background(
                         brush = Brush.radialGradient(
@@ -119,13 +119,13 @@ class MainActivity : ComponentActivity() {
                         )
                     ), state = pagerState
                 ) { currentPage ->
-                        when (currentPage) {
-                            0 -> GoldScreen()
-                            else -> {
-                                Sample()
-                            }
+                    when (currentPage) {
+                        0 -> GoldScreen()
+                        else -> {
+                            Sample()
                         }
                     }
+                }
             }
 
         }

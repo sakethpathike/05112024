@@ -44,8 +44,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.stomatoassignment.common.utils.customRememberSavable
+import com.example.stomatoassignment.common.utils.shapes.Triangle
 import com.example.stomatoassignment.gold.model.TransactionEntry
 import com.example.stomatoassignment.gold.model.TransactionEntryItem
+import com.example.stomatoassignment.gold.presentation.component.GoldBar
 import com.example.stomatoassignment.gold.presentation.component.TransactionItem
 import com.example.stomatoassignment.gold.utils.TransactionStatus
 
@@ -198,9 +200,45 @@ fun GoldScreen() {
                             )
                     )
                 }
+
+                Box(
+                    modifier = Modifier
+                        .padding(bottom = 85.dp)
+                        .align(Alignment.BottomEnd)
+                        .height(140.dp)
+                        .width(100.dp)
+                        .rotate(90f)
+                        .clip(Triangle())
+                        .background(
+                            brush = Brush.linearGradient(
+                                listOf(
+                                    Color(0xFFFFD700).copy(0.45f),
+                                    Color.Transparent,
+                                    Color.White.copy(0.45f)
+                                )
+                            )
+                        )
+                )
+
+                // leaf right:
+                GoldBar()
+                // leaf left:
+                GoldBar(modifier = Modifier.padding(end = 30.dp))
+
+                // leaf-1 right:
+                GoldBar(modifier = Modifier.padding(bottom = 10.dp))
+                // leaf-2 left
+                GoldBar(modifier = Modifier.padding(end = 30.dp, bottom = 10.dp))
+
+                // leaf-3
+                GoldBar(modifier = Modifier.padding(bottom = 20.dp, end = 8.dp))
+
+                // leaf-4
+                GoldBar(modifier = Modifier.padding(end = 25.dp, bottom = 30.dp))
+
                 Box(
                     Modifier
-                        .padding(bottom = 115.dp, end = 115.dp)
+                        .padding(bottom = 115.dp, end = 120.dp)
                         .size(width = 25.dp, height = boxHeight)
                         .clip(
                             RoundedCornerShape(10.dp)
@@ -210,7 +248,7 @@ fun GoldScreen() {
                 )
                 Box(
                     Modifier
-                        .padding(bottom = 130.dp, end = 108.dp)
+                        .padding(bottom = 130.dp, end = 118.dp)
                         .size(width = 35.dp, height = 15.dp)
                         .clip(
                             RoundedCornerShape(25.dp)
@@ -221,7 +259,7 @@ fun GoldScreen() {
 
                 Box(
                     Modifier
-                        .padding(bottom = 160.dp, end = 108.dp)
+                        .padding(bottom = 160.dp, end = 118.dp)
                         .size(width = 35.dp, height = 15.dp)
                         .clip(
                             RoundedCornerShape(25.dp)
@@ -232,7 +270,7 @@ fun GoldScreen() {
 
                 Box(
                     Modifier
-                        .padding(bottom = 115.dp, end = 125.dp)
+                        .padding(bottom = 115.dp, end = 130.dp)
                         .size(width = 45.dp, height = boxHeight)
                         .clip(
                             RoundedCornerShape(10.dp)

@@ -113,7 +113,7 @@ fun TopAppBar() {
                     }
                     Box(
                         modifier = Modifier
-                            .padding(end = 8.dp, top = 8.dp)
+                            .padding(end = 6.dp, top = 6.dp)
                             .border(width = 2.5.dp, shape = CircleShape, color = Color(0xFF38324D))
                             .clip(CircleShape)
                             .size(18.dp)

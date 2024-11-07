@@ -159,10 +159,10 @@ fun GoldScreen() {
                                 )
                             ),
                             size = Size(210f, 28f),
-                            topLeft = Offset(x = size.width - 300f, y = size.height - 215)
+                            topLeft = Offset(x = size.width - 300f, y = size.height - 225)
                         )
                         drawRoundRect(
-                            brush = Brush.linearGradient(
+                            brush = Brush.horizontalGradient(
                                 listOf(
                                     Color.White,
                                     Color.White,
@@ -171,14 +171,14 @@ fun GoldScreen() {
                                 )
                             ),
                             size = Size(210f, 100f),
-                            topLeft = Offset(x = size.width - 300f, y = size.height - 200)
+                            topLeft = Offset(x = size.width - 300f, y = size.height - 210)
                         )
                     }) {
                 val boxHeight = 75.dp
                 Box(
                     Modifier
-                        .padding(bottom = 115.dp, end = 55.dp)
-                        .size(width = 85.dp, height = boxHeight)
+                        .padding(bottom = 115.dp, end = 42.dp)
+                        .size(width = 75.dp, height = boxHeight)
                         .clip(
                             RoundedCornerShape(10.dp)
                         )
@@ -203,42 +203,44 @@ fun GoldScreen() {
 
                 Box(
                     modifier = Modifier
-                        .padding(bottom = 85.dp)
+                        .padding(bottom = 90.dp, top = 2.dp)
                         .align(Alignment.BottomEnd)
-                        .height(140.dp)
+                        .height(145.dp)
                         .width(100.dp)
-                        .rotate(90f)
+                        .rotate(76f)
                         .clip(Triangle())
                         .background(
                             brush = Brush.linearGradient(
                                 listOf(
-                                    Color(0xFFFFD700).copy(0.45f),
                                     Color.Transparent,
-                                    Color.White.copy(0.45f)
+                                    Color(0xFFFFD700).copy(0.1f),
+                                    Color.White.copy(0.25f)
                                 )
                             )
                         )
                 )
 
-                // leaf right:
+                // leaf bar on right:
                 GoldBar()
-                // leaf left:
-                GoldBar(modifier = Modifier.padding(end = 30.dp))
+                // leaf bar on left:
+                GoldBar(modifier = Modifier.padding(end = 25.dp))
 
-                // leaf-1 right:
+                // leaf - 1 bar on right:
                 GoldBar(modifier = Modifier.padding(bottom = 10.dp))
-                // leaf-2 left
-                GoldBar(modifier = Modifier.padding(end = 30.dp, bottom = 10.dp))
+                // leaf - 2 bar on left
+                GoldBar(modifier = Modifier.padding(end = 25.dp, bottom = 10.dp))
 
-                // leaf-3
+                // leaf  -3 bar on right
                 GoldBar(modifier = Modifier.padding(bottom = 20.dp, end = 8.dp))
+                // leaf - 3 bar on left
+                GoldBar(modifier = Modifier.padding(bottom = 20.dp, end = 32.dp))
 
-                // leaf-4
+                // leaf - 4 bar
                 GoldBar(modifier = Modifier.padding(end = 25.dp, bottom = 30.dp))
 
                 Box(
                     Modifier
-                        .padding(bottom = 115.dp, end = 120.dp)
+                        .padding(bottom = 115.dp, end = 102.dp)
                         .size(width = 25.dp, height = boxHeight)
                         .clip(
                             RoundedCornerShape(10.dp)
@@ -248,7 +250,7 @@ fun GoldScreen() {
                 )
                 Box(
                     Modifier
-                        .padding(bottom = 130.dp, end = 118.dp)
+                        .padding(bottom = 130.dp, end = 100.dp)
                         .size(width = 35.dp, height = 15.dp)
                         .clip(
                             RoundedCornerShape(25.dp)
@@ -259,7 +261,7 @@ fun GoldScreen() {
 
                 Box(
                     Modifier
-                        .padding(bottom = 160.dp, end = 118.dp)
+                        .padding(bottom = 160.dp, end = 100.dp)
                         .size(width = 35.dp, height = 15.dp)
                         .clip(
                             RoundedCornerShape(25.dp)
@@ -270,7 +272,7 @@ fun GoldScreen() {
 
                 Box(
                     Modifier
-                        .padding(bottom = 115.dp, end = 130.dp)
+                        .padding(bottom = 115.dp, end = 112.dp)
                         .size(width = 45.dp, height = boxHeight)
                         .clip(
                             RoundedCornerShape(10.dp)
@@ -379,37 +381,48 @@ fun GoldScreen() {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 15.dp, top = 25.dp, end = 15.dp)
+                        .padding(start = 15.dp, top = 40.dp, end = 15.dp)
                 ) {
                     Text(text = "24K Gold in Locker", color = Color(color = 0xFFFFD700))
                     Spacer(Modifier.height(20.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
                             text = "0.828gm",
-                            fontSize = 28.sp,
+                            fontSize = 22.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = Color.White
                         )
                         Spacer(
                             Modifier
-                                .padding(start = 15.dp, end = 15.dp)
+                                .padding(start = 6.dp, end = 6.dp)
                                 .width(1.5.dp)
                                 .height(20.dp)
                                 .background(Color.White)
-                        )/*  Text(
+                        )
+                        Text(
                               text = "₹ 1200",
-                              fontSize = 28.sp,
+                            fontSize = 22.sp,
                               fontWeight = FontWeight.SemiBold,
                               color = Color.White.copy(0.75f)
-                          )*/
+                        )
                     }
-                    Spacer(Modifier.height(30.dp))
+                    Spacer(Modifier.height(50.dp))
                     Button(
                         onClick = {},
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 20.dp, start = 15.dp, end = 15.dp, top = 15.dp),
+                            .padding(start = 15.dp, end = 15.dp, top = 15.dp)
+                            .border(
+                                brush = Brush.verticalGradient(
+                                    listOf(
+                                        Color.White.copy(0.5f),
+                                        Color.Transparent
+                                    )
+                                ),
+                                width = 1.dp,
+                                shape = RoundedCornerShape(10.dp)
+                            ),
                         colors = ButtonColors(
                             containerColor = Color(color = 0xFF5A21A3),
                             contentColor = Color(color = 0xFFFAF9FC),

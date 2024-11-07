@@ -25,7 +25,7 @@ fun BoxScope.GoldBar(
 ) {
     Canvas(
         Modifier
-            .padding(bottom = 118.dp, end = 85.dp)
+            .padding(bottom = 118.dp, end = 64.dp)
             .then(modifier)
             .height(10.dp)
             .align(Alignment.BottomEnd)
@@ -42,7 +42,7 @@ fun BoxScope.GoldBar(
     }
     Canvas(
         Modifier
-            .padding(bottom = 118.dp, end = 84.dp)
+            .padding(bottom = 118.dp, end = 64.dp)
             .then(modifier)
             .width(25.dp)
             .height(3.dp)
@@ -59,12 +59,12 @@ fun BoxScope.GoldBar(
     }
     Canvas(
         Modifier
-            .padding(bottom = 118.dp, end = 95.dp)
+            .padding(bottom = 118.dp, end = 72.dp)
             .then(modifier)
             .height(10.dp)
             .align(Alignment.BottomEnd)
             .rotate(-180f)
-            .width(20.dp)
+            .width(15.dp)
     ) {
         val paint = Paint().apply {
             this.color = Color(color = 0xFFFDE996)

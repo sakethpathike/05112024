@@ -199,7 +199,7 @@ fun GoldScreen() {
                     Box(
                         Modifier
                             .fillMaxHeight()
-                            .width(width = 60.dp)
+                            .width(width = 55.dp)
                             .clip(
                                 RoundedCornerShape(10.dp)
                             )
@@ -283,7 +283,7 @@ fun GoldScreen() {
 
                 Box(
                     Modifier
-                        .padding(bottom = 115.dp, end = 112.dp)
+                        .padding(bottom = 115.dp, end = 110.dp)
                         .size(width = 45.dp, height = boxHeight)
                         .clip(
                             RoundedCornerShape(10.dp)
@@ -391,8 +391,8 @@ fun GoldScreen() {
 
                 Canvas(
                     modifier = Modifier
-                        .padding(bottom = 162.dp, end = 62.dp)
-                        .size(24.dp)
+                        .padding(bottom = 168.dp, end = 44.dp)
+                        .size(18.dp)
                         .align(Alignment.BottomEnd)
                 ) {
                     val path = Path().apply {
@@ -410,7 +410,7 @@ fun GoldScreen() {
 
                 Canvas(
                     modifier = Modifier
-                        .padding(bottom = 198.dp, end = 90.dp)
+                        .padding(bottom = 198.dp, end = 80.dp)
                         .size(14.dp)
                         .align(Alignment.BottomEnd)
                 ) {
@@ -449,10 +449,10 @@ fun GoldScreen() {
                                 .background(Color.White)
                         )
                         Text(
-                              text = "₹ 1200",
+                            text = "₹ 1200",
                             fontSize = 22.sp,
-                              fontWeight = FontWeight.SemiBold,
-                              color = Color.White.copy(0.75f)
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color.White.copy(0.75f)
                         )
                     }
                     Spacer(Modifier.height(50.dp))

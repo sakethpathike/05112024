@@ -29,7 +29,7 @@ fun BoxScope.GoldBar(
 ) {
     Canvas(
         Modifier
-            .padding(bottom = 118.5.dp, end = 64.dp)
+            .padding(bottom = 118.5.dp, end = 69.dp)
             .then(modifier)
             .height(10.dp)
             .align(Alignment.BottomEnd)
@@ -46,7 +46,7 @@ fun BoxScope.GoldBar(
     }
     Box(
         Modifier
-            .padding(bottom = 118.5.dp, end = 64.5.dp)
+            .padding(bottom = 118.5.dp, end = 69.5.dp)
             .then(modifier)
             .width(15.dp)
             .height(3.dp)
@@ -57,7 +57,7 @@ fun BoxScope.GoldBar(
     )
     Canvas(
         Modifier
-            .padding(bottom = 118.5.dp, end = 72.dp)
+            .padding(bottom = 118.5.dp, end = 77.dp)
             .then(modifier)
             .height(10.dp)
             .align(Alignment.BottomEnd)

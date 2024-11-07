@@ -32,76 +32,78 @@ import com.example.stomatoassignment.gold.utils.TransactionStatus
 
 @Composable
 fun TransactionItem(transactionHappenedOn: String, entries: List<TransactionEntryItem>) {
-    Text(
-        text = transactionHappenedOn,
-        modifier = Modifier.padding(start = 15.dp),
-        fontSize = 20.sp,
-        fontWeight = FontWeight.SemiBold, color = Color.White
-    )
-    entries.forEach {
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 15.dp, end = 15.dp, top = 25.dp),
-            colors = CardColors(
-                containerColor = Color(color = 0xFF241F33),
-                contentColor = Color(color = 0xFFC6C5CA),
-                disabledContainerColor = Color.Transparent,
-                disabledContentColor = Color.Transparent
-            )
-        ) {
-            Row(
+    Column(modifier = Modifier.background(Color(color = 0xff1D1829))) {
+        Text(
+            text = transactionHappenedOn,
+            modifier = Modifier.padding(start = 15.dp),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.SemiBold, color = Color.White
+        )
+        entries.forEach {
+            Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 5.dp, bottom = 5.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Box(
-                    modifier = Modifier
-                        .padding(15.dp)
-                        .size(50.dp)
-                        .clip(CircleShape)
-                        .background(Color.White)
+                    .padding(start = 15.dp, end = 15.dp, top = 25.dp),
+                colors = CardColors(
+                    containerColor = Color(color = 0xFF241F33),
+                    contentColor = Color(color = 0xFFC6C5CA),
+                    disabledContainerColor = Color.Transparent,
+                    disabledContentColor = Color.Transparent
                 )
+            ) {
                 Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 5.dp, bottom = 5.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Column {
-                        Text(
-                            text = it.transactionType,
-                            fontWeight = FontWeight.SemiBold,
-                            color = Color.White
-                        )
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(
-                                imageVector = when (it.transactionStatus) {
-                                    TransactionStatus.Success -> Icons.Default.CheckCircle
-                                    TransactionStatus.Processing -> Icons.Default.Sync
-                                }, contentDescription = null, modifier = Modifier.size(16.dp)
-                            )
-                            Spacer(modifier = Modifier.width(5.dp))
-                            Text(
-                                text = "${it.time} • ${it.date}", fontSize = 14.sp
-                            )
-                        }
-                    }
-                    Column(
-                        horizontalAlignment = Alignment.End,
-                        modifier = Modifier.padding(end = 15.dp)
+                    Box(
+                        modifier = Modifier
+                            .padding(15.dp)
+                            .size(50.dp)
+                            .clip(CircleShape)
+                            .background(Color.White)
+                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text(
-                            text = it.amountPaid,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            color = Color.White
-                        )
-                        Text(text = it.weightInGrams.toString().plus(" gms"), fontSize = 14.sp)
+                        Column {
+                            Text(
+                                text = it.transactionType,
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color.White
+                            )
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    imageVector = when (it.transactionStatus) {
+                                        TransactionStatus.Success -> Icons.Default.CheckCircle
+                                        TransactionStatus.Processing -> Icons.Default.Sync
+                                    }, contentDescription = null, modifier = Modifier.size(16.dp)
+                                )
+                                Spacer(modifier = Modifier.width(5.dp))
+                                Text(
+                                    text = "${it.time} • ${it.date}", fontSize = 14.sp
+                                )
+                            }
+                        }
+                        Column(
+                            horizontalAlignment = Alignment.End,
+                            modifier = Modifier.padding(end = 15.dp)
+                        ) {
+                            Text(
+                                text = it.amountPaid,
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color.White
+                            )
+                            Text(text = it.weightInGrams.toString().plus(" gms"), fontSize = 14.sp)
+                        }
                     }
                 }
             }
         }
+        Spacer(modifier = Modifier.height(25.dp))
     }
-    Spacer(modifier = Modifier.height(25.dp))
 }

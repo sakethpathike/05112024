@@ -18,7 +18,6 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
@@ -27,6 +26,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.font.FontWeight
@@ -52,15 +53,25 @@ class MainActivity : ComponentActivity() {
                 tabRowElements.size
             })
             val coroutineScope = rememberCoroutineScope()
-            Scaffold(modifier = Modifier
-                .background(Color(color = 0xFF36156E))
-                .windowInsetsPadding(WindowInsets.statusBars)
-                .fillMaxSize(), topBar = {
+
+            Column(
+                modifier = Modifier
+                    .background(
+                        brush = Brush.radialGradient(
+                            listOf(Color(color = 0xFF21174A), Color(color = 0xFF3A1576)),
+                            center = Offset(
+                                0.4644f,
+                                0.1626f
+                            ),
+                            radius = 0.8374f
+                        )
+                    )
+                    .windowInsetsPadding(WindowInsets.statusBars)
+                    .fillMaxSize()
+            ) {
                 TopAppBar()
-            }) { innerPadding ->
-                Column(modifier = Modifier.padding(innerPadding)) {
-                    ScrollableTabRow(
-                        containerColor = Color(color = 0xFF36156E),
+                ScrollableTabRow(
+                    containerColor = Color.Transparent,
                         selectedTabIndex = pagerState.currentPage,
                         contentColor = Color(color = 0xFFF9F8FA),
                         indicator = { tabPositions ->
@@ -68,7 +79,7 @@ class MainActivity : ComponentActivity() {
                                 SecondaryIndicator(
                                     modifier = Modifier
                                         .tabIndicatorOffset(tabPositions[pagerState.currentPage])
-                                        .height(5.dp)
+                                        .height(4.75.dp)
                                         .clip(
                                             RoundedCornerShape(
                                                 topStart = 15.dp, topEnd = 15.dp
@@ -99,7 +110,15 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     }
-                    HorizontalPager(state = pagerState) { currentPage ->
+                HorizontalPager(
+                    modifier = Modifier.background(
+                        brush = Brush.radialGradient(
+                            listOf(Color(color = 0xFF3A1576), Color(color = 0xFF21174A)),
+                            center = Offset(0.5f, 0.5f),
+                            radius = 500f
+                        )
+                    ), state = pagerState
+                ) { currentPage ->
                         when (currentPage) {
                             0 -> GoldScreen()
                             else -> {
@@ -107,8 +126,8 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     }
-                }
             }
+
         }
     }
 }

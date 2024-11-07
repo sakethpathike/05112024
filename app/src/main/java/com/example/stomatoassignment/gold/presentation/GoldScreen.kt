@@ -103,14 +103,12 @@ fun GoldScreen() {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(color = 0xff1D1829))
     ) {
         item {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .background(Color(color = 0xFF1B1539))
                     .drawBehind {
                         val gridSpacing = 24f
                         (0..size.width.toInt() step gridSpacing.toInt()).forEach {
@@ -442,6 +440,7 @@ fun GoldScreen() {
         item {
             Row(
                 modifier = Modifier
+                    .background(Color(color = 0xff1D1829))
                     .padding(top = 40.dp, bottom = 40.dp)
                     .fillMaxWidth()
                     .horizontalScroll(rememberScrollState()),

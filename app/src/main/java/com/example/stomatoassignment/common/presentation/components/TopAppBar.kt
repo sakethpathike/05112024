@@ -35,7 +35,7 @@ fun TopAppBar() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color(color = 0xFF36156E)),
+            .background(Color.Transparent),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {

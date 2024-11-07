@@ -17,8 +17,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CardGiftcard
 import androidx.compose.material.icons.filled.Headset
 import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material3.Badge
-import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -30,6 +28,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun TopAppBar() {
@@ -102,18 +101,30 @@ fun TopAppBar() {
                         )
                     )
             ) {
-                IconButton(
-                    onClick = {}
-                ) {
-                    BadgedBox(badge = {
-                        Badge {
-                            Text("2")
-                        }
-                    }) {
+                Box {
+                    IconButton(
+                        onClick = {}
+                    ) {
                         Icon(
                             imageVector = Icons.Outlined.Notifications,
                             contentDescription = null,
                             tint = Color.White,
+                        )
+                    }
+                    Box(
+                        modifier = Modifier
+                            .padding(end = 8.dp, top = 8.dp)
+                            .border(width = 2.5.dp, shape = CircleShape, color = Color(0xFF38324D))
+                            .clip(CircleShape)
+                            .size(18.dp)
+                            .background(Color(color = 0xFFDD8091))
+                            .align(Alignment.TopEnd)
+                    ) {
+                        Text(
+                            text = "2",
+                            color = Color.White,
+                            fontSize = 10.sp,
+                            modifier = Modifier.padding(top = 2.dp, start = 6.dp)
                         )
                     }
                 }

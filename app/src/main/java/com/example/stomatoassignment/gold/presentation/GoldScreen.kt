@@ -41,6 +41,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -150,18 +151,6 @@ fun GoldScreen() {
                             )
                         }
 
-                        drawOval(
-                            brush = Brush.horizontalGradient(
-                                listOf(
-                                    Color.White,
-                                    Color.White,
-                                    Color(0xFF481E7E),
-                                    Color(0xFF3A1967),
-                                )
-                            ),
-                            size = Size(210f, 28f),
-                            topLeft = Offset(x = size.width - 300f, y = size.height - 225)
-                        )
                         drawRoundRect(
                             brush = Brush.horizontalGradient(
                                 listOf(
@@ -172,6 +161,26 @@ fun GoldScreen() {
                                 )
                             ),
                             size = Size(210f, 100f),
+                            topLeft = Offset(x = size.width - 300f, y = size.height - 200)
+                        )
+
+                        drawOval(
+                            brush = Brush.horizontalGradient(
+                                listOf(
+                                    Color.White,
+                                    Color.White,
+                                    Color(0xFF481E7E),
+                                    Color(0xFF3A1967),
+                                )
+                            ),
+                            size = Size(210f, 18f),
+                            topLeft = Offset(x = size.width - 300f, y = size.height - 210)
+                        )
+
+                        drawOval(
+                            style = Stroke(1f),
+                            color = Color.White.copy(0.25f),
+                            size = Size(210f, 18f),
                             topLeft = Offset(x = size.width - 300f, y = size.height - 210)
                         )
                     }) {
